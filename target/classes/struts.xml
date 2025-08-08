@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+    
+    <!-- Global Interceptors -->
+    <package name="default" extends="struts-default" namespace="/">
+        
+        <interceptors>
+            <interceptor name="loggingInterceptor" class="com.interview.interceptor.LoggingInterceptor" />
+            <interceptor-stack name="appStack">
+                <interceptor-ref name="loggingInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <!-- Example Action -->
+        <action name="home" class="com.interview.action.HomeAction" method="execute">
+            <interceptor-ref name="appStack"/>
+            <result name="success">/resources/jsp/home.jsp</result>
+        </action>
+        
+    </package>
+</struts>
