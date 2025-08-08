@@ -4,7 +4,7 @@
     <title>Home Page</title>
 </head>
 <body>
-    <h1>Welcome to Employee Management system Struts2 demo with spring!</h1>
+    <h1>Welcome to Employee Management system Struts2 demo!</h1>
     
     <h2>Project Details</h2>
     <ul>
