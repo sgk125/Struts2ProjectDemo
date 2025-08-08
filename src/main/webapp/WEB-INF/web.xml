@@ -25,7 +25,7 @@
 
 	<servlet-mapping>
 		<servlet-name>ApplicationLoader</servlet-name>
-		<url-pattern>/empmanage</url-pattern>
+		<url-pattern>/empmanage/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- Struts2 Filter -->
@@ -45,11 +45,11 @@
             /WEB-INF/spring/SpringBeans.xml
         </param-value>
 	</context-param>
-	<context-param>
+<!-- 	<context-param>
 		<param-name>contextClass</param-name>
 		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
 	</context-param>
-
+ -->
 	<!-- Error Pages -->
 	<error-page>
 		<error-code>404</error-code>

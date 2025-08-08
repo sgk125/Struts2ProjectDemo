@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -13,19 +14,31 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
 
 	<!-- Enable autowire -->
 	<context:annotation-config />
-	<context:component-scan base-package="com" />
+	<context:component-scan
+		base-package="com.interview.empManage" />
 
 	<import resource="DataSource.xml" />
 	<import resource="HibernateSessionFactory.xml" />
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	<bean id="tilesResult" class="org.apache.struts2.views.tiles.TilesResult" />
+
+	<!-- <bean id="tilesResult"
+		class="org.apache.struts2.views.tiles.TilesResult" />
+
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean> -->
 
 </beans>
 

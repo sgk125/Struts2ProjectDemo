@@ -4,24 +4,57 @@
     "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-    <constant name="struts.devMode" value="true" />
-    
-    <!-- Global Interceptors -->
-    <package name="default" extends="struts-default" namespace="/">
-        
-        <interceptors>
-            <interceptor name="loggingInterceptor" class="com.interview.interceptor.LoggingInterceptor" />
-            <interceptor-stack name="appStack">
-                <interceptor-ref name="loggingInterceptor"/>
-                <interceptor-ref name="defaultStack"/>
-            </interceptor-stack>
-        </interceptors>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
 
-        <!-- Example Action -->
-        <action name="home" class="com.interview.action.HomeAction" method="execute">
-            <interceptor-ref name="appStack"/>
-            <result name="success">/resources/jsp/home.jsp</result>
-        </action>
-        
-    </package>
+
+	<!-- Global Interceptors -->
+	<package name="default" extends="struts-default" namespace="/">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<interceptors>
+			<interceptor name="loggingInterceptor"
+				class="com.interview.interceptor.LoggingInterceptor" />
+			<interceptor-stack name="appStack">
+				<interceptor-ref name="loggingInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- Example Action -->
+		<action name="home"
+			class="com.interview.empManage.action.MainAction" method="execute">
+			<interceptor-ref name="appStack" />
+			<result name="success" type="tiles">home</result>
+		</action>
+
+		<action name="employeeList"
+			class="com.interview.empManage.action.MainAction"
+			method="getAllEmployees">
+			<result name="success" type="tiles">allEmployees</result>
+			<result name="error" type="tiles">error</result>
+		</action>
+
+		<action name="addEmployee"
+			class="com.interview.empManage.action.MainAction" method="addEmployee">
+			<result name="success" type="redirectAction">employeeList</result>
+		</action>
+
+		<action name="updateEmployee"
+			class="com.interview.empManage.action.MainAction" method="updateEmployee">
+			<result name="success" type="redirectAction">employeeList</result>
+		</action>
+
+		<action name="deleteEmployee"
+			class="com.interview.empManage.action.MainAction" method="deleteEmployee">
+			<result name="success" type="redirectAction">employeeList</result>
+		</action>
+
+
+	</package>
 </struts>
